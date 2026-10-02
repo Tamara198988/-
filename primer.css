@@ -1,0 +1,75 @@
+body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Убираем скролл, сцена будет на весь экран */
+            background-color: #0a0a0a;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Поверхность для 3D-графики */
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* HTML-слой с текстом поверх 3D */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            pointer-events: none; /* Чтобы мышь не цеплялась за текст, а взаимодействовала с 3D (если добавим) */
+        }
+
+        h1 {
+            font-size: 5rem;
+            letter-spacing: 4px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        header{
+           
+        }
+        header h1{
+            text-align: center;
+            color: aliceblue;
+            letter-spacing: 1px;
+            font-family:'Helvetica', sans-serif;
+        }
+
+.projects-links {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px; /* Расстояние между кнопками */
+  margin-top: 30px; /* Отступ сверху от текста */
+  pointer-events: auto; /* ВАЖНО: возвращаем кликабельность, так как у родителя .content стоит none */
+}
+
+/* Внешний вид тонких белых кнопок */
+.btn {
+  color: white; /* Белый цвет текста */
+  border: 1px solid white; /* Тонкая белая рамка (1 пиксель) */
+  padding: 8px 24px; /* Отступы внутри кнопки (верх/низ и право/лево) */
+  text-decoration: none; /* Убираем стандартное подчеркивание ссылок */
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 30px; /* Закругляем углы. Если нужны прямоугольные — удали эту строку */
+  transition: 0.3s; /* Плавная анимация при наведении */
+}
+
+/* Эффект при наведении мыши (кнопка заливается белым) */
+.btn:hover {
+  background-color: white;
+  color: black;
+}
