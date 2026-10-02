@@ -1,0 +1,74 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой первый 3D-сайт</title>
+    <link rel="stylesheet" href="primer.css">
+    </head>
+<body>
+<header>
+   <nav class="projects-links">
+  <a href="https://tamara198988.github.io/hjbjhbhj/" class="btn">ПРОЕКТ 1</a>
+  <a href="https://tamara198988.github.io/new/" class="btn">ПРОЕКТ 2</a>
+  <a href="#" class="btn">ПРОЕКТ 3</a>
+</nav>
+</header>
+
+    <!-- HTML: Визуальная часть -->
+    <div class="content">
+        <h1>Мое портфолио</h1>
+           </div>
+
+    <!-- Подключаем библиотеку Three.js напрямую через интернет (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- JS: Вся магия 3D графики -->
+    <script>
+        // 1. Создаем сцену (пространство, где всё находится)
+        const scene = new THREE.Scene();
+
+        // 2. Создаем камеру (наши "глаза")
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5; // Отодвигаем камеру назад, чтобы увидеть объект
+
+        // 3. Настраиваем рендерер (движок, который рисует сцену в canvas)
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement); // Добавляем canvas на страницу
+
+        // 4. Создаем 3D-объект (Сложный узел / TorusKnot)
+        // Геометрия (форма)
+        const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 128, 32);
+        // Материал (MeshNormalMaterial переливается разными цветами в зависимости от угла)
+        const material = new THREE.MeshNormalMaterial({ wireframe: false }); 
+        
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        // 5. Функция анимации (запускается 60 раз в секунду)
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Вращаем фигуру по осям X и Y
+            torusKnot.rotation.x += 0.005;
+            torusKnot.rotation.y += 0.01;
+
+            // Отрисовываем сцену с текущего ракурса камеры
+            renderer.render(scene, camera);
+        }
+
+        // Запускаем анимацию
+        animate();
+
+        // 6. Делаем сайт адаптивным при изменении размера окна
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+    <main>
+
+    </main>
+</body>
+</html>
